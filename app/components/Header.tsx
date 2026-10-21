@@ -366,7 +366,7 @@ export default function Header({ onSearch }: HeaderProps) {
           </div>
 
           <div className="pt-8 text-center text-xs text-[#f2d383]/60 tracking-widest uppercase">
-            Crowsnest Barbershop © {new Date().getFullYear()}
+            Crowsnest Barbershop © 2026
           </div>
         </div>
       )}
