@@ -24,32 +24,9 @@ export default function Header({ onSearch }: HeaderProps) {
 
   return (
     <>
-      {/* Top Header: Search, Social, Cart */}
+      {/* Top Header:  Social, Cart */}
       <header className="w-full bg-[#052124] border-b border-[#f2d383]/15 text-[#f2d383] text-xs uppercase tracking-widest relative z-40">
         <div className="max-w-[1800px] mx-auto px-6 py-2.5 flex items-center justify-between">
-          {/* Top Left: Search */}
-          <div className="flex-1 flex items-center">
-            <form onSubmit={handleSearchSubmit} className="relative flex items-center">
-              <input
-                type="text"
-                placeholder="SEARCH"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent border-b border-[#f2d383]/40 focus:border-[#f2d383] text-xs py-1 pr-6 text-white placeholder-[#f2d383]/60 outline-none w-28 sm:w-36 transition-all focus:w-48 tracking-widest"
-              />
-              <button
-                type="submit"
-                aria-label="Search"
-                className="absolute right-0 text-[#f2d383] hover:text-white transition-colors"
-              >
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <circle cx="11" cy="11" r="8" strokeWidth="2" />
-                  <path strokeWidth="2" strokeLinecap="round" d="m21 21-4.35-4.35" />
-                </svg>
-              </button>
-            </form>
-          </div>
-
           {/* Top Center: Social Links */}
           <div className="flex items-center space-x-5">
             <a

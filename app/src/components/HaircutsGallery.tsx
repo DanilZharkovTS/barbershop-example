@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import ScrollReveal from "./ScrollReveal";
 
 interface Haircut {
   id: string;
@@ -104,90 +105,100 @@ export default function HaircutsGallery() {
       <div className="max-w-[1400px] mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="max-w-2xl">
-            <span className="text-xs uppercase tracking-[0.25em] text-[#f2d383] font-medium block mb-2">
-              Our Master Craft
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-normal uppercase tracking-[0.16em] text-white">
-              Signature Cuts &amp; Styles
-            </h2>
-            <p className="text-sm sm:text-base text-gray-300 font-light tracking-wide mt-3 leading-relaxed">
-              Precision craft, timeless silhouettes, and razor-sharp fades tailored to your look.
-              Browse our craft and choose the signature style for your next session.
-            </p>
-          </div>
+          <ScrollReveal direction="left" duration={700} className="max-w-2xl">
+            <div>
+              <span className="text-xs uppercase tracking-[0.25em] text-[#f2d383] font-medium block mb-2">
+                Our Master Craft
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-normal uppercase tracking-[0.16em] text-white">
+                Signature Cuts &amp; Styles
+              </h2>
+              <p className="text-sm sm:text-base text-gray-300 font-light tracking-wide mt-3 leading-relaxed">
+                Precision craft, timeless silhouettes, and razor-sharp fades tailored to your look.
+                Browse our craft and choose the signature style for your next session.
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* Filter Pills */}
-          <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em]">
-            {[
-              { key: "all", label: "All Cuts" },
-              { key: "classic", label: "Classic" },
-              { key: "fades", label: "Sharp Fades" },
-              { key: "beard", label: "Beard & Razor" },
-            ].map((tab) => (
-              <button
-                key={tab.key}
-                type="button"
-                onClick={() => setActiveCategory(tab.key as CategoryFilter)}
-                className={`px-4 py-2 rounded-sm transition-all duration-200 border ${
-                  activeCategory === tab.key
-                    ? "bg-[#f2d383] text-[#052124] border-[#f2d383] font-semibold"
-                    : "bg-transparent text-gray-300 border-[#f2d383]/20 hover:border-[#f2d383]/60 hover:text-white"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+          <ScrollReveal direction="right" duration={700}>
+            <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.18em]">
+              {[
+                { key: "all", label: "All Cuts" },
+                { key: "classic", label: "Classic" },
+                { key: "fades", label: "Sharp Fades" },
+                { key: "beard", label: "Beard & Razor" },
+              ].map((tab) => (
+                <button
+                  key={tab.key}
+                  type="button"
+                  onClick={() => setActiveCategory(tab.key as CategoryFilter)}
+                  className={`px-4 py-2 rounded-sm transition-all duration-200 border ${
+                    activeCategory === tab.key
+                      ? "bg-[#f2d383] text-[#052124] border-[#f2d383] font-semibold"
+                      : "bg-transparent text-gray-300 border-[#f2d383]/20 hover:border-[#f2d383]/60 hover:text-white"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredCuts.map((cut) => (
-            <div
+          {filteredCuts.map((cut, idx) => (
+            <ScrollReveal
               key={cut.id}
-              onClick={() => setSelectedPhoto(cut)}
-              className="group relative h-[360px] sm:h-[400px] bg-black/40 rounded-sm overflow-hidden cursor-pointer shadow-xl border border-[#f2d383]/15 transition-all duration-300 hover:-translate-y-1 hover:border-[#f2d383]/50"
+              direction="up"
+              delay={idx * 90}
+              duration={650}
             >
-              {/* Photo */}
-              <div className="absolute inset-0">
-                <Image
-                  src={cut.image}
-                  alt={cut.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                {/* Vignette Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/20 group-hover:from-black/95 transition-all duration-300" />
-              </div>
+              <div
+                onClick={() => setSelectedPhoto(cut)}
+                className="group relative h-[360px] sm:h-[400px] bg-black/40 rounded-sm overflow-hidden cursor-pointer shadow-xl border border-[#f2d383]/15 transition-all duration-300 hover:-translate-y-2 hover:border-[#f2d383]/50 hover:shadow-[0_20px_35px_rgba(0,0,0,0.5)]"
+              >
+                {/* Photo */}
+                <div className="absolute inset-0">
+                  <Image
+                    src={cut.image}
+                    alt={cut.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  {/* Vignette Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/20 group-hover:from-black/95 transition-all duration-300" />
+                </div>
 
-              {/* Tag in Top Left */}
-              <div className="absolute top-4 left-4 z-10">
-                <span className="text-[10px] uppercase tracking-[0.2em] font-semibold px-2.5 py-1 bg-[#052124]/85 text-[#f2d383] border border-[#f2d383]/30 rounded-xs">
-                  {cut.tag}
-                </span>
-              </div>
-
-              {/* Bottom Info Overlay */}
-              <div className="absolute bottom-0 inset-x-0 p-5 z-10 flex flex-col justify-end text-left">
-                <h3 className="text-lg font-bold uppercase tracking-[0.12em] text-white group-hover:text-[#f2d383] transition-colors leading-snug mb-1">
-                  {cut.title}
-                </h3>
-                <p className="text-xs text-gray-300 line-clamp-2 font-light tracking-wide mb-3">
-                  {cut.description}
-                </p>
-
-                <div className="flex items-center justify-between text-[11px] text-[#f2d383] uppercase tracking-widest pt-2 border-t border-[#f2d383]/20">
-                  <span className="truncate pr-2 font-light text-gray-400">
-                    {cut.product}
-                  </span>
-                  <span className="shrink-0 font-semibold group-hover:translate-x-1 transition-transform">
-                    VIEW &rarr;
+                {/* Tag in Top Left */}
+                <div className="absolute top-4 left-4 z-10">
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-semibold px-2.5 py-1 bg-[#052124]/85 text-[#f2d383] border border-[#f2d383]/30 rounded-xs">
+                    {cut.tag}
                   </span>
                 </div>
+
+                {/* Bottom Info Overlay */}
+                <div className="absolute bottom-0 inset-x-0 p-5 z-10 flex flex-col justify-end text-left">
+                  <h3 className="text-lg font-bold uppercase tracking-[0.12em] text-white group-hover:text-[#f2d383] transition-colors leading-snug mb-1">
+                    {cut.title}
+                  </h3>
+                  <p className="text-xs text-gray-300 line-clamp-2 font-light tracking-wide mb-3">
+                    {cut.description}
+                  </p>
+
+                  <div className="flex items-center justify-between text-[11px] text-[#f2d383] uppercase tracking-widest pt-2 border-t border-[#f2d383]/20">
+                    <span className="truncate pr-2 font-light text-gray-400">
+                      {cut.product}
+                    </span>
+                    <span className="shrink-0 font-semibold group-hover:translate-x-1 transition-transform">
+                      VIEW &rarr;
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

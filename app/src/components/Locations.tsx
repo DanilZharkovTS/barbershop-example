@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import ScrollReveal from "./ScrollReveal";
 
 interface LocationItem {
   id: string;
@@ -114,60 +115,68 @@ export default function Locations() {
     <section id="book-now" className="relative bg-[#052124] py-20 px-6 sm:px-10 lg:px-16 scroll-mt-20">
       <div className="max-w-[1400px] mx-auto">
         {/* Header Block */}
-        <div className="max-w-3xl mb-16">
-          <h2 className="text-3xl sm:text-4xl font-normal uppercase tracking-[0.16em] text-white mb-4">
-            Book An Appointment
-          </h2>
-          <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-light tracking-wide">
-            We have six barbershops across Santa Cruz de Tenerife, Costa Adeje, Los Cristianos,
-            Playa de las Américas, Puerto de la Cruz and San Cristóbal de La Laguna. Click on the
-            location you wish to make an appointment for.
-          </p>
-        </div>
+        <ScrollReveal direction="up" duration={700}>
+          <div className="max-w-3xl mb-16">
+            <h2 className="text-3xl sm:text-4xl font-normal uppercase tracking-[0.16em] text-white mb-4">
+              Book An Appointment
+            </h2>
+            <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-light tracking-wide">
+              We have six barbershops across Santa Cruz de Tenerife, Costa Adeje, Los Cristianos,
+              Playa de las Américas, Puerto de la Cruz and San Cristóbal de La Laguna. Click on the
+              location you wish to make an appointment for.
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* 6 Location Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-          {LOCATIONS.map((loc) => (
-            <div
+          {LOCATIONS.map((loc, idx) => (
+            <ScrollReveal
               key={loc.id}
-              onClick={() => handleOpenBooking(loc)}
-              className="group relative h-[380px] sm:h-[420px] rounded-sm overflow-hidden cursor-pointer shadow-2xl transition-all duration-500 hover:-translate-y-1.5"
+              direction="up"
+              delay={idx * 120}
+              duration={700}
             >
-              {/* Background Location Image */}
-              <div className="absolute inset-0">
-                <Image
-                  src={loc.image}
-                  alt={loc.city}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/30 group-hover:bg-black/60 transition-colors duration-300" />
+              <div
+                onClick={() => handleOpenBooking(loc)}
+                className="group relative h-[380px] sm:h-[420px] rounded-sm overflow-hidden cursor-pointer shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
+              >
+                {/* Background Location Image */}
+                <div className="absolute inset-0">
+                  <Image
+                    src={loc.image}
+                    alt={loc.city}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
+                  />
+                  {/* Dark Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/30 group-hover:bg-black/60 transition-colors duration-300" />
+                </div>
+
+                {/* Poster Card Overlay Content */}
+                <div className="relative z-10 h-full p-8 flex flex-col justify-end items-center text-center">
+                  <span className="text-[11px] font-medium tracking-[0.22em] text-[#f2d383] uppercase mb-1">
+                    {loc.name}
+                  </span>
+
+                  <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-[0.14em] text-white mb-2 leading-tight">
+                    {loc.city}
+                  </h3>
+
+                  <p className="text-xs uppercase tracking-[0.18em] text-gray-300 mb-6 font-light">
+                    {loc.address}
+                  </p>
+
+                  <button
+                    type="button"
+                    className="inline-block bg-[#f2d383] text-[#052124] group-hover:bg-white group-hover:text-[#052124] transition-all duration-300 text-xs font-semibold uppercase tracking-[0.2em] px-7 py-3 rounded-sm shadow-md"
+                  >
+                    BOOK NOW
+                  </button>
+                </div>
               </div>
-
-              {/* Poster Card Overlay Content */}
-              <div className="relative z-10 h-full p-8 flex flex-col justify-end items-center text-center">
-                <span className="text-[11px] font-medium tracking-[0.22em] text-[#f2d383] uppercase mb-1">
-                  {loc.name}
-                </span>
-
-                <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-[0.14em] text-white mb-2 leading-tight">
-                  {loc.city}
-                </h3>
-
-                <p className="text-xs uppercase tracking-[0.18em] text-gray-300 mb-6 font-light">
-                  {loc.address}
-                </p>
-
-                <button
-                  type="button"
-                  className="inline-block bg-[#f2d383] text-[#052124] group-hover:bg-white group-hover:text-[#052124] transition-all duration-300 text-xs font-semibold uppercase tracking-[0.2em] px-7 py-3 rounded-sm shadow-md"
-                >
-                  BOOK NOW
-                </button>
-              </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
