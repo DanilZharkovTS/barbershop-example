@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --font-rubik: "Rubik", Arial, Helvetica, sans-serif;
+  --color-brand-yellow: #f2d383;
+  --color-brand-dark: #052124;
+  --color-brand-dark-footer: #0d484f;
+  --color-brand-black: #0f0f0f;
+}
+
+:root {
+  --brand-yellow: #f2d383;
+  --brand-dark: #052124;
+  --brand-footer: #0d484f;
+}
+
+body {
+  font-family: var(--font-rubik), Arial, Helvetica, sans-serif;
+  background-color: var(--brand-dark);
+  color: #ffffff;
+}
+
+/* Custom scrollbar and animations */
+::placeholder {
+  color: #889999;
+}
