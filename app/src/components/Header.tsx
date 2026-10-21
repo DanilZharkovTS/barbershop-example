@@ -184,6 +184,12 @@ export default function Header({ onSearch }: HeaderProps) {
             </div>
 
             <a
+              href="#haircuts"
+              className="py-2 hover:text-[#f2d383]/60 transition-colors tracking-[0.2em]"
+            >
+              STYLES
+            </a>
+            <a
               href="#gift-cards"
               className="py-2 hover:text-[#f2d383]/60 transition-colors tracking-[0.2em]"
             >
@@ -339,6 +345,14 @@ export default function Header({ onSearch }: HeaderProps) {
                 </div>
               )}
             </div>
+
+            <a
+              href="#haircuts"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 border-b border-[#f2d383]/20"
+            >
+              STYLES
+            </a>
 
             <a
               href="#gift-cards"

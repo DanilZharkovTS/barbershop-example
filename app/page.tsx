@@ -1,10 +1,11 @@
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Locations from "./components/Locations";
-import GiftCards from "./components/GiftCards";
-import VideoSection from "./components/VideoSection";
-import Newsletter from "./components/Newsletter";
-import Footer from "./components/Footer";
+import Header from "./src/components/Header";
+import Hero from "./src/components/Hero";
+import Locations from "./src/components/Locations";
+import HaircutsGallery from "./src/components/HaircutsGallery";
+import GiftCards from "./src/components/GiftCards";
+import VideoSection from "./src/components/VideoSection";
+import Newsletter from "./src/components/Newsletter";
+import Footer from "./src/components/Footer";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Locations />
+        <HaircutsGallery />
         <GiftCards />
         <VideoSection />
         <Newsletter />
